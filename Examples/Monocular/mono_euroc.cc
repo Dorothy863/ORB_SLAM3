@@ -161,12 +161,13 @@ int main(int argc, char **argv)
             else if(ni>0)
                 T = tframe-vTimestampsCam[seq][ni-1];
 
-            //std::cout << "T: " << T << std::endl;
-            //std::cout << "ttrack: " << ttrack << std::endl;
+            // std::cout << "T: " << T << std::endl;
+            // std::cout << "ttrack: " << ttrack << std::endl;
 
             if(ttrack<T) {
-                //std::cout << "usleep: " << (dT-ttrack) << std::endl;
-                usleep((T-ttrack)*1e6); // 1e6
+                // std::cout << "usleep: " << (dT-ttrack) << std::endl;
+                // usleep((T-ttrack)*1e6); // 1e6
+                usleep((T*1e-9-ttrack)); // 1e6
             }
         }
 
@@ -221,8 +222,8 @@ void LoadImages(const string &strImagePath, const string &strPathTimes,
             vstrImages.push_back(strImagePath + "/" + ss.str() + ".png");
             double t;
             ss >> t;
-            vTimeStamps.push_back(t*1e-9);
-
+            // vTimeStamps.push_back(t*1e-9);
+            vTimeStamps.push_back(t);
         }
     }
 }
